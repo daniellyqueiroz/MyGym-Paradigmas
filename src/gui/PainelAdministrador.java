@@ -1109,11 +1109,13 @@ public class PainelAdministrador extends JPanel{
 	        	}else{
 	        	try{
 	        		MyGymFachada.getInstance().cadastrarAulas(new Aula(textFieldNomeDaAula.getText().toLowerCase(), comboDias.getSelectedItem().toString(), comboHora.getSelectedItem().toString()+":"+comboMinutos.getSelectedItem().toString() ));
+	        		Aula aula = new Aula(textFieldNomeDaAula.getText().toLowerCase(), comboDias.getSelectedItem().toString(), comboHora.getSelectedItem().toString()+":"+comboMinutos.getSelectedItem().toString() );
 	        		JOptionPane.showMessageDialog(null, "Aula Cadastrada");
 	        		comboDias.setSelectedIndex(0);
 	            	comboHora.setSelectedIndex(0);
 	            	comboMinutos.setSelectedIndex(0);
 	            	textFieldNomeDaAula.setText("");
+	            	MyGymFachada.getInstance().gravarAula(aula.getNomeDaAula());
 	        	}catch(NumberFormatException e){
 	        		JOptionPane.showMessageDialog(null, "Campo aceita apenas números");
 	        	} catch (ObjetoJaExisteException e) {

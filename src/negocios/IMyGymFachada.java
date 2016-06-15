@@ -62,4 +62,14 @@ public interface IMyGymFachada {
 	
 	boolean procurarCpfExistente(Long cpf);
 	
+	//LOGGING
+	
+public void gravarLogin(String registro);
+	
+	public void gravarTreino(String registro);
+	
+	public void gravarPersistencia(String registro);
+
+	public void gravarAula(String registro);
+	
 }

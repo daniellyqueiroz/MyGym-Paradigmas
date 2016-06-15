@@ -3,22 +3,22 @@ package negocios;
 public class ControladorLogging {
 	
 	
-	public void registrarLogin(String registro){
+	public void gravarLogin(String registro){
 		
 		//REGISTRADO PELO ASPECTO LOGGING
 	}
 	
-	public void registrarTreino(String registro){
+	public void gravarTreino(String registro){
 		
 		//REGISTRADO PELO ASPECTO LOGGING
 	}
 	
-	public void registrarPersistencia(String registro){
+	public void gravarPersistencia(String registro){
 		
 		//REGISTRADO PELO ASPECTO LOGGING
 	}
 
-	public void registrarAula(String registro){
+	public void gravarAula(String registro){
 		
 		//REGISTRADO PELO ASPECTO LOGGING
 	}
