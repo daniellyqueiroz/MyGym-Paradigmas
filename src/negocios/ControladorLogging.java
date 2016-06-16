@@ -22,5 +22,9 @@ public class ControladorLogging {
 		
 		//REGISTRADO PELO ASPECTO LOGGING
 	}
+	public void gravarRemocaoCliente(String registro){
+		
+		//REGISTRADO PELO ASPECTO LOGGING
+	}
 	
 }

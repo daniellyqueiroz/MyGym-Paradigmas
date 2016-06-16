@@ -27,6 +27,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JMenuBar;
 
+import util.MensagemErro;
 import util.Seguranca;
 import classesBasicas.Administrador;
 import classesBasicas.Aula;
@@ -323,13 +324,23 @@ public class PainelAdministrador extends JPanel{
 	            	textFieldSenha.setText("");
 	            	textFieldUsuario.setText("");
 	            	
+	            	//MyGymFachada.getInstance().gravarPersistencia();
+	            	
             	}catch(NumberFormatException e){
             		JOptionPane.showMessageDialog(null, "Campo de CPF aceita apenas números");
             	}catch(ObjetoJaExisteException e){
-            		JOptionPane.showMessageDialog(null, e.getMessage());
+            		
+              		
+            		//JOptionPane.showMessageDialog(null, e.getMessage());
+            		System.out.println(e.getMessage());
+            		MensagemErro.objetoJaExiste(e.getMessage());
+            		
+            		;//ASPECTO
             	}
             	catch (UsuarioJaExisteException e) {
-					JOptionPane.showMessageDialog(null, "Usuario Já Existe");
+					//JOptionPane.showMessageDialog(null, "Usuario Já Existe");
+  
+					MensagemErro.usuarioJaExiste("Objeto não existe");//ASPECTO
             }
 	      }
 		
@@ -928,9 +939,12 @@ public class PainelAdministrador extends JPanel{
 	        		JOptionPane.showMessageDialog(null, "Digite todos os campos");
 	        	}else{
 	        	try{
+	        	Cliente c;
+	        	c =MyGymFachada.getInstance().procurarCliente(Long.parseLong(textFieldCpfRemoverCliente.getText()));
 	             MyGymFachada.getInstance().removerCliente(Long.parseLong(textFieldCpfRemoverCliente.getText().toString()));
 	             JOptionPane.showMessageDialog(null, "Removido com sucesso");
 	             	textFieldCpfRemoverCliente.setText("");
+	             	MyGymFachada.getInstance().gravarRemocaoCliente(c.getNome());
 	        	}catch(NumberFormatException e){
 	        		JOptionPane.showMessageDialog(null, "Campo de CPF aceita apenas números");
 	        	} catch (ObjetoNaoExisteException e) {

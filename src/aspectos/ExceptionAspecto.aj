@@ -10,6 +10,7 @@ import excecoes.UsuarioOuSenhaIncorretosException;
 import util.MensagemErro;
 
 public aspect ExceptionAspecto {
+	
 	//POINTCUT LOGIN
 	pointcut logar(): execution(* *negocios.logar(..));
 		
@@ -76,7 +77,7 @@ public aspect ExceptionAspecto {
 		
 		MensagemErro.cpfInvalido(e.getMessage());
 	}
-	*/
+*/	
 	after()throwing(IllegalArgumentException e) : cadastrarCliente() || cadastrarTreinador() || cadastrarAula() || cadastrarAdministrador() || atualizarAula() ||
 	atualizarTreinador() || atualizarCliente() || atualizarAdministrador() || procurarCliente() || procurarAula() ||
 	procurarTreinador() || procurarAdministrador() || logar(){

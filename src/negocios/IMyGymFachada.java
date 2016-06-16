@@ -64,7 +64,7 @@ public interface IMyGymFachada {
 	
 	//LOGGING
 	
-public void gravarLogin(String registro);
+	public void gravarLogin(String registro);
 	
 	public void gravarTreino(String registro);
 	
@@ -72,4 +72,5 @@ public void gravarLogin(String registro);
 
 	public void gravarAula(String registro);
 	
+	public void gravarRemocaoCliente(String registro);
 }

@@ -3,10 +3,8 @@ package excecoes;
 import classesBasicas.Entidade;
 
 
-
 public class ObjetoJaExisteException extends Exception {
-	
-	private Entidade objeto;
+		private Entidade objeto;
 
 	public ObjetoJaExisteException(Entidade obj) {
 
@@ -22,5 +20,9 @@ public class ObjetoJaExisteException extends Exception {
 	public void setObjeto(Entidade objeto) {
 		this.objeto = objeto;
 	}
+	
+
+	
+	
 
 }

@@ -34,6 +34,7 @@ public class MyGymFachada implements IMyGymFachada{
 		cadastroTreino = new CadastroTreino();
 		cadastroPessoa = new CadastroPessoa();
 		cadastroAdministrador = new CadastroAdministrador();
+		logging = new ControladorLogging();
 		
 	}
 	
@@ -175,6 +176,10 @@ public class MyGymFachada implements IMyGymFachada{
 			logging.gravarAula(registro);
 		}
 
+		public void gravarRemocaoCliente(String registro){
+			
+			logging.gravarRemocaoCliente(registro);
+		}
 
 
 	}

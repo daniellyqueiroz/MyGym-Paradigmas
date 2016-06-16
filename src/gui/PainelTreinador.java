@@ -241,12 +241,15 @@ public class PainelTreinador extends JPanel {
 	        	}else{
 	     
 	        		try {
-						MyGymFachada.getInstance().cadastrarTreino(new Treino (textFieldNomeTreino.getText(), textFieldNomeExercicio.getText(), Integer.parseInt(comboRep.getSelectedItem().toString()), MyGymFachada.getInstance().procurarCliente(Long.parseLong(textFieldCpfCadastroTreino.getText()))));
+	        			Treino treino = new Treino (textFieldNomeTreino.getText(), textFieldNomeExercicio.getText(), Integer.parseInt(comboRep.getSelectedItem().toString()), MyGymFachada.getInstance().procurarCliente(Long.parseLong(textFieldCpfCadastroTreino.getText())));
+						MyGymFachada.getInstance().cadastrarTreino(treino);
 						JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso");
 		            	textFieldCpfCadastroTreino.setText("");
 		            	textFieldNomeExercicio.setText("");
 		            	textFieldNomeTreino.setText("");
 		            	comboRep.setSelectedIndex(0);
+		            	MyGymFachada.getInstance().gravarTreino(treino.toString());
+		            	
 					} catch (ObjetoJaExisteException e) {
 						JOptionPane.showMessageDialog(null, e.getMessage());
 					}catch(NumberFormatException e){
