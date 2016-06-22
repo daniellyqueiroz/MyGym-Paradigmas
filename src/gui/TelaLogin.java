@@ -78,9 +78,10 @@ public class TelaLogin extends JFrame{
 						p = MyGymFachada.getInstance().logar(textFieldLogin.getText().toLowerCase(), Seguranca.md5(textFieldSenha.getText()));
 						AdministracaoDeTelas.getAreaRestrita().carregarTela(p);	
 						AdministracaoDeTelas.administracaoDeTelas(TelaLogin.this, AdministracaoDeTelas.getAreaRestrita());// olhar metodo
-						MyGymFachada.getInstance().gravarLogin(p.getLogin().getUsuario());// ASPECTO LOGGING
+						
 					} catch (UsuarioOuSenhaIncorretosException e2) {
-						JOptionPane.showMessageDialog(TelaLogin.this, e2.getMessage());
+						//JOptionPane.showMessageDialog(TelaLogin.this, e2.getMessage());
+						//ASPECTO
 					} catch (ObjetoNaoExisteException e1) {
 						JOptionPane.showMessageDialog(TelaLogin.this, e1.getMessage());
 					}

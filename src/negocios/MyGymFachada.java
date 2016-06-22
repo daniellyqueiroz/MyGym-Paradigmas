@@ -25,7 +25,7 @@ public class MyGymFachada implements IMyGymFachada{
 	private CadastroTreino cadastroTreino;
 	private CadastroPessoa cadastroPessoa;
 	private CadastroAdministrador cadastroAdministrador;
-	private ControladorLogging logging;
+	
 	
 	public MyGymFachada(){
 		cadastroCliente = new CadastroCliente();
@@ -34,8 +34,7 @@ public class MyGymFachada implements IMyGymFachada{
 		cadastroTreino = new CadastroTreino();
 		cadastroPessoa = new CadastroPessoa();
 		cadastroAdministrador = new CadastroAdministrador();
-		logging = new ControladorLogging();
-		
+				
 	}
 	
 	 public static MyGymFachada getInstance() {
@@ -154,34 +153,7 @@ public class MyGymFachada implements IMyGymFachada{
 		 return cadastroAdministrador.procurarAdministrador(cpf);
 	 }
 
-	 //LOGGING
 	 
-	 public void gravarLogin(String registro){
-			
-			logging.gravarLogin(registro);
-		}
-		
-		public void gravarTreino(String registro){
-			
-			logging.gravarTreino(registro);
-		}
-		
-		public void gravarPersistencia(String registro){
-			
-			logging.gravarPersistencia(registro);
-		}
-
-		public void gravarAula(String registro){
-			
-			logging.gravarAula(registro);
-		}
-
-		public void gravarRemocaoCliente(String registro){
-			
-			logging.gravarRemocaoCliente(registro);
-		}
-
-
 	}
 	
 	

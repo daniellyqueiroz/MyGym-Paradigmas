@@ -2,12 +2,15 @@
 package aspectos;
 
 
+import javax.swing.JOptionPane;
+
 import excecoes.CpfInvalidoException;
 import excecoes.ObjetoJaExisteException;
 import excecoes.ObjetoNaoExisteException;
 import excecoes.SenhaNaoExisteException;
 import excecoes.UsuarioJaExisteException;
 import excecoes.UsuarioOuSenhaIncorretosException;
+import gui.TelaLogin;
 import util.MensagemErro;
 
 public aspect ExceptionAspecto {
@@ -71,7 +74,7 @@ public aspect ExceptionAspecto {
 	
 	after()throwing(UsuarioOuSenhaIncorretosException e) : logar() {
 			
-		System.out.println(e.getMessage());
+		JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	/*
 	after()throwing(CpfInvalidoException e) : logar() {

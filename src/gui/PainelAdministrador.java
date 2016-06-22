@@ -408,6 +408,7 @@ public class PainelAdministrador extends JPanel{
 		        	} catch (ObjetoNaoExisteException e) {
 		        		JOptionPane.showMessageDialog(null, e.getMessage());
 					}
+		        	
 		        }
 		        }
 			});
@@ -943,7 +944,7 @@ public class PainelAdministrador extends JPanel{
 	             MyGymFachada.getInstance().removerCliente(Long.parseLong(textFieldCpfRemoverCliente.getText().toString()));
 	             JOptionPane.showMessageDialog(null, "Removido com sucesso");
 	             	textFieldCpfRemoverCliente.setText("");
-	             	MyGymFachada.getInstance().gravarRemocaoCliente(c.getNome());
+	             	//MyGymFachada.getInstance().gravarRemocaoCliente(c.getNome());
 	        	}catch(NumberFormatException e){
 	        		JOptionPane.showMessageDialog(null, "Campo de CPF aceita apenas números");
 	        	} catch (ObjetoNaoExisteException e) {
@@ -1128,7 +1129,7 @@ public class PainelAdministrador extends JPanel{
 	            	comboHora.setSelectedIndex(0);
 	            	comboMinutos.setSelectedIndex(0);
 	            	textFieldNomeDaAula.setText("");
-	            	MyGymFachada.getInstance().gravarAula(aula.getNomeDaAula());
+	            	//MyGymFachada.getInstance().gravarAula(aula.getNomeDaAula());
 	        	}catch(NumberFormatException e){
 	        		JOptionPane.showMessageDialog(null, "Campo aceita apenas números");
 	        	} catch (ObjetoJaExisteException e) {

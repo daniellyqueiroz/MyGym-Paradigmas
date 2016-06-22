@@ -248,7 +248,7 @@ public class PainelTreinador extends JPanel {
 		            	textFieldNomeExercicio.setText("");
 		            	textFieldNomeTreino.setText("");
 		            	comboRep.setSelectedIndex(0);
-		            	MyGymFachada.getInstance().gravarTreino(treino.toString());
+		            	//MyGymFachada.getInstance().gravarTreino(treino.toString());
 		            	
 					} catch (ObjetoJaExisteException e) {
 						JOptionPane.showMessageDialog(null, e.getMessage());
