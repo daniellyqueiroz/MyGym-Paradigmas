@@ -12,13 +12,10 @@ import classesBasicas.Treinador;
 import classesBasicas.Treino;
 
 public aspect LoggingAspecto {	
-	Treino t;
-	Aula a;
-	Cliente c;
 	pointcut gravarLogin(): execution(* *negocios.MyGymFachada.logar(..));
-	pointcut gravarTreino() : call(* negocios.MyGymFachada.cadastrarTreino(..));//Retorna null
-	pointcut gravarAula() : call(* negocios.MyGymFachada.cadastrarAulas(..));//Retorna null
-	pointcut gravarRemocaoCliente() : execution(* *negocios.MyGymFachada.removerCliente(..));//Retorna null
+	pointcut gravarTreino(Treino t) : call(* negocios.MyGymFachada.cadastrarTreino(..)) && args(t);
+	pointcut gravarAula(Aula a) : call(* negocios.MyGymFachada.cadastrarAulas(Aula)) && args(a);
+	pointcut gravarRemocaoCliente(Cliente c) : call(* negocios.MyGymFachada.removerCliente(Cliente)) && args(c);
 	pointcut gravarProcuraCliente() : call(* negocios.MyGymFachada.procurarCliente(..));
 	pointcut gravarProcuraTreinador() : call(* negocios.MyGymFachada.procurarTreinador(..));
 	pointcut gravarProcuraTreino() : call(* negocios.MyGymFachada.procurarTreino(..));
@@ -41,7 +38,7 @@ public aspect LoggingAspecto {
    	 }
 
 	}
-	after() returning: gravarTreino(){
+	after(Treino t) returning: gravarTreino(t){
 	   	 
 	   	 try{
 	   		String gravar = t.getNomeTreino();
@@ -58,7 +55,7 @@ public aspect LoggingAspecto {
 	   	 }
 	   }
 	
-	after() returning(): gravarAula(){
+	after(Aula a) returning: gravarAula(a){
 	   	 
 	   	 try{
 	   		 String gravar = a.getNomeDaAula(); 
@@ -74,7 +71,7 @@ public aspect LoggingAspecto {
 	   		 System.out.println(e.getMessage());
 	   	 }
 	   }
-	after() returning(): gravarRemocaoCliente(){
+	after(Cliente c) returning: gravarRemocaoCliente(c){
 	   	 
 	   	 try{
 		    String gravar = c.getLogin().getUsuario();	 
