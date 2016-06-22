@@ -28,7 +28,7 @@ public class CadastroCliente {
 				
 			}else{
 				throw new ObjetoNaoExisteException();
-			}
+				}
 		
 		}
 

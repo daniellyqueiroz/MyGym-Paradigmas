@@ -70,7 +70,7 @@ public class CadastroAula {
 
 				if (aulaRetornar == null) {
 					
-				throw new ObjetoNaoExisteException();
+					throw new ObjetoNaoExisteException();
 				}
 				return aulaRetornar;
 			}

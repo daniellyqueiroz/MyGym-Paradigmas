@@ -11,7 +11,7 @@ public aspect LoggingAspecto {
 	pointcut gravarAula(String registro) : call(* negocios.ControladorLogging.gravarAula(..)) && args(registro);
 	pointcut gravarRemocaoCliente(String registro) : call(* negocios.ControladorLogging.gravarRemocaoCliente(..)) && args(registro);
 	
-	after(String gravar) : gravarLogin(gravar){// AFTER RETURN
+	after(String gravar) returning: gravarLogin(gravar){// AFTER RETURN
     	 
     	 try{
 	    	 FileWriter fw = new FileWriter("RegistroLogin.txt", true );
@@ -27,7 +27,7 @@ public aspect LoggingAspecto {
     	 }
     }
 	
-	after(String gravar) : gravarAula(gravar){
+	after(String gravar) returning: gravarAula(gravar){
    	 
    	 try{
 	    	 FileWriter fw = new FileWriter("RegistroAula.txt", true );
@@ -43,7 +43,7 @@ public aspect LoggingAspecto {
    	 }
    }
      
-	after(String gravar) : gravarTreino(gravar){
+	after(String gravar) returning: gravarTreino(gravar){
 	   	 
 	   	 try{
 		    	 FileWriter fw = new FileWriter("RegistroTreino.txt", true );
@@ -59,7 +59,7 @@ public aspect LoggingAspecto {
 	   	 }
 	   }
 	     
-	after(String gravar) : gravarRemocaoCliente(gravar){
+	after(String gravar) returning: gravarRemocaoCliente(gravar){
 	   	 
 	   	 try{
 		    	 FileWriter fw = new FileWriter("RegistroExcluirCliente.txt", true );

@@ -7,10 +7,9 @@ public class MensagemErro {
         Alert alert = new Alert(tipo);
         alert.setTitle(tit);
         alert.setHeaderText(msg);
-
         alert.showAndWait();
     }
-
+	
     public static void cpfInvalido(String mensagem) {
        aviso("CPF Inválido", mensagem, Alert.AlertType.ERROR);
     }

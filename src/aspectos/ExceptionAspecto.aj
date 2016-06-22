@@ -1,3 +1,4 @@
+
 package aspectos;
 
 
@@ -12,7 +13,7 @@ import util.MensagemErro;
 public aspect ExceptionAspecto {
 	
 	//POINTCUT LOGIN
-	pointcut logar(): execution(* *negocios.logar(..));
+	pointcut logar(): execution(* *negocios.MyGymFachada.logar(..));
 		
 	//POINTCUTS CLIENTE
 	pointcut cadastrarCliente(): call(* negocios.MyGymFachada.cadastrarCliente(..));
@@ -48,31 +49,31 @@ public aspect ExceptionAspecto {
 	after()throwing(ObjetoJaExisteException e) : cadastrarCliente() || cadastrarTreino() || cadastrarAula() ||
 	cadastrarTreinador() || cadastrarAdministrador(){
 			
-			MensagemErro.objetoJaExiste(e.getMessage());
+		System.out.println(e.getMessage());
 		}
 	
 	after()throwing(ObjetoNaoExisteException e) : removerCliente() || removerTreino() || removerAula() ||
 	removerTreinador() || removerAdministrador() || procurarCliente() || procurarTreino() || procurarAula() ||
 	procurarTreinador() || procurarAdministrador(){
 			
-			MensagemErro.objetoNaoExiste(e.getMessage());
+		System.out.println(e.getMessage());
 		}
 	
 	after()throwing(UsuarioJaExisteException e) : cadastrarCliente() || cadastrarTreinador() {
 			
-			MensagemErro.usuarioJaExiste(e.getMessage());
+		System.out.println(e.getMessage());
 		}
 	
 	after()throwing(UsuarioJaExisteException e) : cadastrarCliente() || cadastrarTreinador() {
 		
-		MensagemErro.usuarioJaExiste(e.getMessage());
+		System.out.println(e.getMessage());
 	}
-	/*
+	
 	after()throwing(UsuarioOuSenhaIncorretosException e) : logar() {
 			
-			MensagemErro.usuarioOUsenhaInvalido(e.getMessage());
+		System.out.println(e.getMessage());
 		}
-	
+	/*
 	after()throwing(CpfInvalidoException e) : logar() {
 		
 		MensagemErro.cpfInvalido(e.getMessage());
@@ -82,7 +83,7 @@ public aspect ExceptionAspecto {
 	atualizarTreinador() || atualizarCliente() || atualizarAdministrador() || procurarCliente() || procurarAula() ||
 	procurarTreinador() || procurarAdministrador() || logar(){
 			
-			MensagemErro.usuarioJaExiste("Argumento inválido");
+		System.out.println(e.getMessage());
 		}
 
 }

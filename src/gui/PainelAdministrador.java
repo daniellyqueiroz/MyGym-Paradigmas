@@ -331,16 +331,15 @@ public class PainelAdministrador extends JPanel{
             	}catch(ObjetoJaExisteException e){
             		
               		
-            		//JOptionPane.showMessageDialog(null, e.getMessage());
-            		System.out.println(e.getMessage());
-            		MensagemErro.objetoJaExiste(e.getMessage());
+            		JOptionPane.showMessageDialog(null, e.getMessage());
+            		
             		
             		;//ASPECTO
             	}
             	catch (UsuarioJaExisteException e) {
-					//JOptionPane.showMessageDialog(null, "Usuario Já Existe");
+					JOptionPane.showMessageDialog(null, "Usuario Já Existe");
   
-					MensagemErro.usuarioJaExiste("Objeto não existe");//ASPECTO
+					
             }
 	      }
 		
