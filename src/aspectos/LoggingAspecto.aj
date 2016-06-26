@@ -12,15 +12,23 @@ import classesBasicas.Treinador;
 import classesBasicas.Treino;
 
 public aspect LoggingAspecto {	
+	Cliente c;
+	Treinador t;
 	pointcut gravarLogin(): execution(* *negocios.MyGymFachada.logar(..));
+	pointcut gravarCadastroCliente(Cliente c) : call(* negocios.MyGymFachada.cadastrarCliente(..)) && args(c);
+	pointcut gravarCadastroTreinador(Treinador t) : call(* negocios.MyGymFachada.cadastrarTreinador(..)) && args(t);
+	pointcut gravarCadastroAdm(Administrador ad) : call(* negocios.MyGymFachada.cadastraAdministrador(..)) && args(ad);
 	pointcut gravarTreino(Treino t) : call(* negocios.MyGymFachada.cadastrarTreino(..)) && args(t);
 	pointcut gravarAula(Aula a) : call(* negocios.MyGymFachada.cadastrarAulas(Aula)) && args(a);
-	pointcut gravarRemocaoCliente(Cliente c) : call(* negocios.MyGymFachada.removerCliente(Cliente)) && args(c);
+	pointcut gravarRemocaoCliente(Long cpf) : call(* negocios.MyGymFachada.removerCliente(..)) && args(cpf);
+	pointcut gravarRemocaoTreinador(Long cpf) : call(* negocios.MyGymFachada.removerTreinador(..)) && args(cpf);
 	pointcut gravarProcuraCliente() : call(* negocios.MyGymFachada.procurarCliente(..));
 	pointcut gravarProcuraTreinador() : call(* negocios.MyGymFachada.procurarTreinador(..));
 	pointcut gravarProcuraTreino() : call(* negocios.MyGymFachada.procurarTreino(..));
 	pointcut gravarProcuraAula() : call(* negocios.MyGymFachada.procurarAulas(..));
 	pointcut gravarProcuraAdm() : call(* negocios.MyGymFachada.procurarAdministrador(..));
+	
+	//LOGIN
 
 	after() returning(Pessoa p): gravarLogin() {
 		try{	
@@ -38,6 +46,60 @@ public aspect LoggingAspecto {
    	 }
 
 	}
+	
+	//CADASTROS
+	
+	after(Cliente c) returning: gravarCadastroCliente(c){
+	   	 
+	   	 try{
+	   		String gravar = c.getLogin().getUsuario();
+	    	 FileWriter fw = new FileWriter("RegistroCadastroCliente.txt", true );
+	    	 BufferedWriter bw = new BufferedWriter( fw );
+	    	 bw.write("O cliente de login " + gravar + " foi cadastrado no sistema em "+ new Date() );
+	    	 bw.newLine();
+	    	 bw.close();
+	    	 fw.close();
+	   	 
+	   	 }catch(Exception e){
+	   		 
+	   		 System.out.println(e.getMessage());
+	   	 }
+	   }
+	
+	after(Treinador t) returning: gravarCadastroTreinador(t){
+	   	 
+	   	 try{
+	   		String gravar = t.getLogin().getUsuario();
+	    	 FileWriter fw = new FileWriter("RegistroCadastroTreinador.txt", true );
+	    	 BufferedWriter bw = new BufferedWriter( fw );
+	    	 bw.write("O treinador de login " + gravar +" foi cadastrado no sistema em "+ new Date() );
+	    	 bw.newLine();
+	    	 bw.close();
+	    	 fw.close();
+	   	 
+	   	 }catch(Exception e){
+	   		 
+	   		 System.out.println(e.getMessage());
+	   	 }
+	   }
+	
+	after(Administrador ad) returning: gravarCadastroAdm(ad){
+	   	 
+	   	 try{
+	   		String gravar = ad.getLogin().getUsuario();
+	    	 FileWriter fw = new FileWriter("RegistroCadastroAdm.txt", true );
+	    	 BufferedWriter bw = new BufferedWriter( fw );
+	    	 bw.write("O adm de login " + gravar +" foi cadastradoo no sistema em "+ new Date() );
+	    	 bw.newLine();
+	    	 bw.close();
+	    	 fw.close();
+	   	 
+	   	 }catch(Exception e){
+	   		 
+	   		 System.out.println(e.getMessage());
+	   	 }
+	   }
+	
 	after(Treino t) returning: gravarTreino(t){
 	   	 
 	   	 try{
@@ -71,11 +133,12 @@ public aspect LoggingAspecto {
 	   		 System.out.println(e.getMessage());
 	   	 }
 	   }
-	after(Cliente c) returning: gravarRemocaoCliente(c){
-	   	 
+	//REMOÇÕES
+	
+	after(Long cpf) returning(): gravarRemocaoCliente(cpf){
 	   	 try{
-		    String gravar = c.getLogin().getUsuario();	 
-	   		 FileWriter fw = new FileWriter("RegistroExcluirCliente.txt", true );
+			     String gravar = c.getLogin().getUsuario();	 
+		   		 FileWriter fw = new FileWriter("RegistroRemocaoCliente.txt", true );
 		    	 BufferedWriter bw = new BufferedWriter( fw );
 		    	 bw.write( gravar +" - removido do sistema - "+ new Date() );
 		    	 bw.newLine();
@@ -87,7 +150,25 @@ public aspect LoggingAspecto {
 	   		 System.out.println(e.getMessage());
 	   	 }
 	   }
-	     
+	after(Long cpf) returning: gravarRemocaoTreinador(cpf){
+	   	 
+	   	 try{
+	   		String gravar = t.getLogin().getUsuario();
+	    	 FileWriter fw = new FileWriter("RegistroRemocaoTreinador.txt", true );
+	    	 BufferedWriter bw = new BufferedWriter( fw );
+	    	 bw.write("O treinador de login " + gravar +" foi removido no sistema em "+ new Date() );
+	    	 bw.newLine();
+	    	 bw.close();
+	    	 fw.close();
+	   	 
+	   	 }catch(Exception e){
+	   		 
+	   		 System.out.println(e.getMessage());
+	   	 }
+	   }
+	
+	//PROCURAS
+	
 	after() returning(Cliente c): gravarProcuraCliente() {
 		try{	
 			String gravar = c.getNome();
